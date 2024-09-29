@@ -95,7 +95,9 @@ int main()
             /* Ver altura da árvore */
             break;
         case 4:
-            /* Mostrar os elementos de um nível */
+            printf("Digite o nível que deseja exibir: ");
+            scanf("%d", &nivel);
+            mostrarElementosNivel(raiz, nivel);
             break;
         case 5:
             /* Checar se árvore está balanceada ou não */
