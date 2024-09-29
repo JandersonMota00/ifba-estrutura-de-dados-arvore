@@ -1,17 +1,15 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
-int main(){
-
-    typedef struct Node{
+typedef struct Node{
         float num;
         struct Node* esquerda;
         struct Node* direita;
-    }Node;
+}Node;
 
-
-    Node* InseriroNo(Node *raiz, int numero){
+Node* InseriroNo(Node *raiz, int numero) {
         if(raiz == NULL){
             return criarNo(numero)
         }
@@ -25,10 +23,41 @@ int main(){
         }
 
         return raiz;
+}
 
-    }
+int main(){
+    int opcao;
 
+    do {
+        printf("( 0 ) Sair\n( 1 ) Insercao de NOS na arvore\n( 2 ) Remocao de NOS na arvore\n( 3 ) Ver altura da arvore\n( 4 ) Mostrar os elementos de um nivel\n( 5 ) Checar se arvore esta balanceada ou nao\n( 6 ) Mostrar estatistica da arvore\n");
+        scanf("%d",&opcao);
+
+        switch (opcao)
+        {
+            case 1:
+                /* Inserção de NÓS na árvore */
+                break;
+            case 2:
+                /* Remoção de nós na árvore */
+                break;
+            case 3:
+                /* Ver altura da árvore */
+                break;
+            case 4:
+                /* Mostrar os elementos de um nível */
+                break;
+            case 5:
+                /* Checar se árvore está balanceada ou não */
+                break;
+            case 6:
+                /* Mostrar estatística da árvore */
+                break;
+
+            default:
+                break;
+        }
     
+    } while( opcao != 0);
 
     return 0;
 }
