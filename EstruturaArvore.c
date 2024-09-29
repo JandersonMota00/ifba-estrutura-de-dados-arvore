@@ -3,30 +3,26 @@
 #include <stdlib.h>
 #include <math.h>
 
-typedef struct Node
-{
-    float num;
-    struct Node *esquerda;
-    struct Node *direita;
-} Node;
+typedef struct Node{
+        float num;
+        struct Node* esquerda;
+        struct Node* direita;
+}Node;
 
-Node *InseriroNo(Node *raiz, int numero)
-{
-    if (raiz == NULL)
-    {
-        return criarNo(numero)
-    }
+Node* InseriroNo(Node *raiz, int numero) {
+        if(raiz == NULL){
+            return criarNo(numero)
+        }
 
-    if (numero < raiz->numero)
-    {
-        raiz->esquerda = InserirNo(raiz->esquerda, numero);
-    }
-    else if (numero < raiz->numero)
-    {
-        raiz->direita = InserirNo(raiz->direita, int numero);
-    }
+        if(numero < raiz -> numero ){
+            raiz -> esquerda = InserirNo(raiz -> esquerda, numero);
 
-    return raiz;
+        }else if(numero < raiz -> numero){
+            raiz -> direita = InserirNo(raiz -> direita, int numero);
+
+        }
+
+        return raiz;
 }
 
 int altura(Node *raiz)
@@ -77,6 +73,7 @@ void mostrarElementosNivel(Node *raiz, int nivel)
 int main()
 {
     int opcao;
+    Node* root = NULL;
 
     do
     {
