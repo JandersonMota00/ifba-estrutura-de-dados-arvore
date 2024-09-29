@@ -43,6 +43,37 @@ int altura(Node *raiz)
     }
 }
 
+void mostrarNivel(Node *raiz, int nivel)
+{
+    if (raiz == NULL)
+    {
+        return;
+    }
+    if (nivel == 1)
+    {
+        printf("%f ", raiz->num);
+    }
+    else if (nivel > 1)
+    {
+        mostrarNivel(raiz->esquerda, nivel - 1);
+        mostrarNivel(raiz->direita, nivel - 1);
+    }
+}
+
+void mostrarElementosNivel(Node *raiz, int nivel)
+{
+    if (nivel > altura(raiz))
+    {
+        printf("Nível inválido!\n");
+    }
+    else
+    {
+        printf("Elementos no nível %d: ", nivel);
+        mostrarNivel(raiz, nivel);
+        printf("\n");
+    }
+}
+
 int main()
 {
     int opcao;
