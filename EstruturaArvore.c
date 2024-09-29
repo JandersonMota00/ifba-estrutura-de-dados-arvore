@@ -9,7 +9,16 @@ typedef struct Node{
     struct Node* direita;
 }Node;
 
-Node* InseriroNo(Node *raiz, int numero) {
+
+Node* criarNo(int numeroCriar){
+    Node* novo = (No*) malloc(sizeof(No));
+    criacao->num = numeroCriar;
+    criacao -> esquerda = NULL;
+    criacao -> direita = NULL;
+    return criacao; 
+}
+
+Node* inseriroNoNaArvore(Node *raiz, int numero) {
     if(raiz == NULL){
         return criarNo(numero)
     }
@@ -83,6 +92,31 @@ void mostrarNivel(Node *raiz, int nivel)
     }
 }
 
+void verificarBalanceada(No* raiz){
+    if(raiz == NULL){
+        return 0;
+    }
+
+
+    int alturaEsquerda = verificarBalanceada(raiz -> esquerda);
+    if(alturaEsquerda == -1){
+        return -1;
+    }
+
+    int alturaDireita = verificarBalanceada(raiz -> direita);
+    if(alturaDireita == -1){
+        return -1;
+    }
+
+    return 1+(alturaEsquerda > alturaDireita > alturaEsquerda : alturaDireita);
+
+}
+
+bool estaBalanceada(No* raiz){
+    return verificarBalanceada(raiz) != 1;
+}
+
+
 void mostrarElementosNivel(Node *raiz, int nivel)
 {
     if (nivel > altura(raiz))
@@ -95,7 +129,11 @@ void mostrarElementosNivel(Node *raiz, int nivel)
         mostrarNivel(raiz, nivel);
         printf("\n");
     }
+
+
 }
+
+
 
 int main()
 {
