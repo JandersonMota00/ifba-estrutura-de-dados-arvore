@@ -4,27 +4,54 @@
 #include <math.h>
 
 typedef struct Node{
-        float num;
-        struct Node* esquerda;
-        struct Node* direita;
+    float num;
+    struct Node* esquerda;
+    struct Node* direita;
 }Node;
 
 Node* InseriroNo(Node *raiz, int numero) {
-        if(raiz == NULL){
-            return criarNo(numero)
-        }
+    if(raiz == NULL){
+        return criarNo(numero)
+    }
 
-        if(numero < raiz -> numero ){
-            raiz -> esquerda = InserirNo(raiz -> esquerda, numero);
+    if(numero < raiz -> numero ){
+        raiz -> esquerda = InserirNo(raiz -> esquerda, numero);
 
-        }else if(numero < raiz -> numero){
-            raiz -> direita = InserirNo(raiz -> direita, int numero);
+    }else if(numero < raiz -> numero){
+        raiz -> direita = InserirNo(raiz -> direita, int numero);
 
-        }
+    }
 
-        return raiz;
+    return raiz;
 }
 
+/* Remoção de um nó na árvore */
+Node* removerNo(Node* raiz, float removeNumero) {
+    if (raiz == NULL) return raiz;
+    else if (removeNumero < raiz->removeNumero) raiz->esquerda = removerNo(raiz->esquerda, removeNumero);
+    else if (removeNumero > raiz->removeNumero) raiz->direita = removerNo(raiz->direita, removeNumero);
+    else {
+        // Nó com apenas um filho ou nenhum
+        if (raiz->esquerda == NULL) {
+            Node* temp = raiz->direita;
+            free(raiz);
+            return temp;
+        } else if (raiz->direita == NULL) {
+            Node* temp = raiz->esquerda;
+            free(raiz);
+            return temp;
+        }
+
+        // Nó com dois filhos
+        Node* temp = encontrarMin(raiz->direita);
+        raiz->num = temp->num;
+        raiz->direita = removerNo(raiz->direita, temp->num);
+    }
+
+    return raiz;
+}
+
+/* Altura da árvore */
 int altura(Node *raiz)
 {
     if (raiz == NULL)
@@ -73,7 +100,7 @@ void mostrarElementosNivel(Node *raiz, int nivel)
 int main()
 {
     int opcao;
-    Node* root = NULL;
+    Node* raiz = NULL;
 
     do
     {
@@ -83,13 +110,19 @@ int main()
         switch (opcao)
         {
         case 1:
-            /* Inserção de NÓS na árvore */
+            // Inserção de NÓS na árvore
             break;
         case 2:
-            /* Remoção de nós na árvore */
+            // Remoção de nós na árvore
+            float no;
+
+            printf("Digite o NO que deseja remover: ");
+            scanf("%f", &no);
+            raiz = removerNo(raiz, no);
             break;
         case 3:
-            /* Ver altura da árvore */
+            // Ver altura da árvore
+            printf("Altura da árvore: %d\n", altura(raiz));
             break;
         case 4:
             printf("Digite o nível que deseja exibir: ");
@@ -97,13 +130,15 @@ int main()
             mostrarElementosNivel(raiz, nivel);
             break;
         case 5:
-            /* Checar se árvore está balanceada ou não */
+            // Checar se árvore está balanceada ou não
             break;
         case 6:
-            /* Mostrar estatística da árvore */
+            // Mostrar estatística da árvore
             break;
 
         default:
+            if (opcao != 0)
+                printf("Opcao invalida!\n");
             break;
         }
 
