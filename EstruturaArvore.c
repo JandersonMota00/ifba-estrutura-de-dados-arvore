@@ -35,6 +35,9 @@ Node *inseriroNoNaArvore(Node *raiz, float numero)
     else if (numero > raiz->num)
     {
         raiz->direita = inseriroNoNaArvore(raiz->direita, numero);
+    } else{
+        printf("Número já inserido na àrvore\n");
+        return raiz;
     }
 
     return raiz;
@@ -419,7 +422,11 @@ int main()
             printf("Digite o número para inserir: ");
             scanf("%f", &numero);
             raiz = inseriroNoNaArvore(raiz, numero);
-            printf("Número inserido!\n");
+            Node *raizAtual = raiz;
+            if(raizAtual != raiz){
+             printf("Número inserido!\n");
+            }
+           
             aguardar(); // Pausar após inserir
             break;
         }
